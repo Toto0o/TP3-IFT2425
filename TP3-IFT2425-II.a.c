@@ -242,15 +242,6 @@ float f(float x)
   return 4.0*sqrt((1.0-pow(x,2)));
 }
 
-float fPP(float x)
-{
-  return -4.0/sqrt(pow(1.0-x*x,3));
-}
-
-float err(double h, float xn, float x0, const double xi) {
-  return (-pow(h,2)/12.0)*(xn-x0)*fPP(xi);
-}
-
 float pairWiseSum(const float *arr, int size) 
 {
   if (size == 1) {
@@ -321,10 +312,7 @@ int main(int argc,char** argv)
 
   float pi = pairWiseSum(VctPts, NbInt+1);
 
-  printf("pi = %.10f\n", pi);
-  printf("err = %.10f", err(h, 1.0, 0.0, 1.0-h));
- 
-
+  printf("Pi =%.10f Er=%.10f LogEr=%.2f", pi, fabs(pi-PI), log(fabs(pi-PI))/log(10));
 
  //End
    
